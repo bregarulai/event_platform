@@ -8,7 +8,6 @@ module.exports = withUt({
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -19,26 +18,28 @@ module.exports = withUt({
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
         primary: {
           500: "#624CF5",
-          50: "#F6F8FD",
+          50: " #F6F8FD",
+          DEFAULT: "#624CF5",
           foreground: "hsl(var(--primary-foreground))",
         },
         coral: {
           500: "#15BF59",
         },
+
         grey: {
-          600: "#545454",
+          600: "#545454", // Subdued - color name in figma
           500: "#757575",
-          50: "#F6F6F6",
+          400: "#AFAFAF", // Disabled - color name in figma
+          50: "#F6F6F6", // White Grey - color name in figma
         },
         black: "#000000",
         white: "#FFFFFF",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        foreground: "hsl(var(--foreground))",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -64,11 +65,11 @@ module.exports = withUt({
           foreground: "hsl(var(--card-foreground))",
         },
       },
-      fortFamily: {
+      fontFamily: {
         poppins: ["var(--font-poppins)"],
       },
       backgroundImage: {
-        "dotted-pattern": "url('assets/images/dotted-pattern.png')",
+        "dotted-pattern": "url('/assets/images/dotted-pattern.png')",
         "hero-img": "url('/assets/images/hero.png')",
       },
       borderRadius: {
