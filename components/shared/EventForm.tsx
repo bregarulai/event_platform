@@ -17,6 +17,7 @@ import { EventFormProps } from "@/types";
 import { eventFormSchema } from "@/lib/validator";
 import { eventDefaulValues } from "@/constants";
 import Dropdown from "./Dropdown";
+import { Textarea } from "../ui/textarea";
 
 const EventForm = ({ userId, type }: EventFormProps) => {
   const initialValues = eventDefaulValues;
@@ -67,6 +68,26 @@ const EventForm = ({ userId, type }: EventFormProps) => {
             )}
           />
         </div>
+
+        <div className="flex flex-col gap-5 md:flex-row">
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl className="h-72">
+                  <Textarea
+                    className="textarea rounded-2xl"
+                    placeholder="Description"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>

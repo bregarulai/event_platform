@@ -156,4 +156,8 @@ body {
   .select-item {
     @apply py-3 cursor-pointer focus:bg-primary-50;
   }
+
+  .textarea {
+    @apply bg-grey-50 flex flex-1 placeholder:text-grey-500 p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent !important;
+  }
 }
