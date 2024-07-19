@@ -19,3 +19,8 @@ export type EventFormProps = {
   userId: string;
   type: "Create" | "Update";
 };
+
+export type DropdownProps = {
+  value?: string;
+  onChangeHandler?: () => void;
+};

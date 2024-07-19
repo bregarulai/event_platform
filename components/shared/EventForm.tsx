@@ -3,21 +3,20 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
+
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
+import { Button } from "@/components/ui/button";
 import { EventFormProps } from "@/types";
 import { eventFormSchema } from "@/lib/validator";
 import { eventDefaulValues } from "@/constants";
+import Dropdown from "./Dropdown";
 
 const EventForm = ({ userId, type }: EventFormProps) => {
   const initialValues = eventDefaulValues;
@@ -46,6 +45,21 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                     className="input-field"
                     placeholder="Event title"
                     {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="categoryId"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Dropdown
+                    onChangeHandler={field.onChange}
+                    value={field.value}
                   />
                 </FormControl>
                 <FormMessage />
