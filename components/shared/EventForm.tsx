@@ -199,6 +199,34 @@ const EventForm = ({ userId, type }: EventFormProps) => {
             )}
           />
         </div>
+        <div className="flex flex-col gap-5 md:flex-row">
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <Image
+                      className="filter-grey"
+                      src="/assets/icons/dollar.svg"
+                      height={24}
+                      width={24}
+                      alt="dollar"
+                    />
+                    <Input
+                      className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      type="number"
+                      placeholder="price"
+                      {...field}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <Button type="submit">Submit</Button>
       </form>
     </Form>
