@@ -16,3 +16,16 @@ export const createUser = async (user: CreateUserParams) => {
     handleError(error);
   }
 };
+
+export const getUserById = async (userId: string) => {
+  try {
+    await connectToDatabase();
+
+    const user = await User.findById(userId);
+
+    if (!user) throw new Error("User not found");
+    return parseStringify(user);
+  } catch (error) {
+    handleError(error);
+  }
+};
