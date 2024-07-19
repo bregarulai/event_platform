@@ -14,3 +14,8 @@ export type UpdateUserParams = {
   username: string;
   photo: string;
 };
+
+export type EventFormProps = {
+  userId: string;
+  type: "Create" | "Update";
+};

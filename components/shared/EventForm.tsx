@@ -1,7 +1,9 @@
 "use client";
 
-const EventForm = () => {
-  return <div>EventForm</div>;
+import { EventFormProps } from "@/types";
+
+const EventForm = ({ userId, type }: EventFormProps) => {
+  return <div>EventForm {type}</div>;
 };
 
 export default EventForm;
