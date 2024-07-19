@@ -20,6 +20,7 @@ import { eventDefaulValues } from "@/constants";
 import Dropdown from "./Dropdown";
 import { Textarea } from "../ui/textarea";
 import FileUploader from "./FileUploader";
+import Image from "next/image";
 
 const EventForm = ({ userId, type }: EventFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
@@ -100,6 +101,32 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                     imageUrl={field.value}
                     setFiles={setFiles}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="flex flex-col gap-5 md:flex-row">
+          <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <Image
+                      src="/assets/icons/location-grey.svg"
+                      height={24}
+                      width={24}
+                      alt="calendar"
+                    />
+                    <Input
+                      className="input-field"
+                      placeholder="Event location or Online"
+                      {...field}
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
