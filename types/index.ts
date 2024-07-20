@@ -31,3 +31,7 @@ export type FileUploadProps = {
   onFieldChange: (value: string) => void;
   setFiles: Dispatch<SetStateAction<File[]>>;
 };
+
+export type CreateCategoryParams = {
+  categoryName: string;
+};
