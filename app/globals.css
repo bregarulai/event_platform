@@ -118,8 +118,21 @@ body {
   }
 
   /* 20 */
+  .p-bold-20 {
+    @apply font-bold text-[20px] leading-[30px] tracking-[0.01rem];
+  }
+
   .p-regular-20 {
-    @apply text-[20px] font-normal leading-[30px] tracking-[2%];
+    @apply text-[20px] font-normal leading-[30px] tracking-[0.01rem];
+  }
+
+  /* 18 */
+  .p-medium-18 {
+    @apply text-[18px] font-medium leading-[28px];
+  }
+
+  .p-regular-18 {
+    @apply text-[18px] font-normal leading-[28px] tracking-[0.01rem];
   }
 
   /* 16 */

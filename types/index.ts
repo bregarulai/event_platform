@@ -40,6 +40,11 @@ export type CreateEventParams = {
   path: string;
 };
 
+export type SearchParamProps = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
 export type EventFormProps = {
   userId: string;
   type: "Create" | "Update";
