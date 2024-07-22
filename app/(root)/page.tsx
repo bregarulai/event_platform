@@ -1,9 +1,18 @@
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-const Home = () => {
+import { Button } from "@/components/ui/button";
+import Collection from "@/components/shared/Collection";
+import { getAllEvets } from "@/lib/actions/event.actions";
+
+const Home = async () => {
+  const events = await getAllEvets({
+    query: "",
+    category: "",
+    page: 1,
+    limit: 6,
+  });
+
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
@@ -36,6 +45,15 @@ const Home = () => {
         <div className="flex w-full flex-col md:flex-row gap-5">
           Search CategoryFilter
         </div>
+        <Collection
+          data={events?.data}
+          emptyTitle="No Events Found"
+          emptyStateSubtext="Come back later"
+          collectionType="All_Events"
+          limit={6}
+          page={1}
+          totalPages={2}
+        />
       </section>
     </>
   );

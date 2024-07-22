@@ -25,3 +25,9 @@ export const eventDefaulValues = {
   isFree: false,
   url: "",
 };
+
+export enum CollectionTypes {
+  EVENT_ORGANIZED = "Events_Organized",
+  MY_TICKETS = "My_Tickets",
+  ALL_EVENTS = "All_Events",
+}

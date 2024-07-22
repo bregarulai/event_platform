@@ -1,3 +1,4 @@
+import { IEvent } from "@/lib/database/models/event.model";
 import { Dispatch, SetStateAction } from "react";
 
 // ============ USER PARAMS
@@ -38,6 +39,32 @@ export type CreateEventParams = {
     url: string;
   };
   path: string;
+};
+
+export type GetAllEventsParams = {
+  query: string;
+  limit: number;
+  page: number;
+  category: string;
+};
+
+export type CollectionType = "Events_Organized" | "My_Tickets" | "All_Events";
+
+export type CollectionProps = {
+  data: IEvent[];
+  emptyTitle: string;
+  emptyStateSubtext: string;
+  collectionType?: CollectionType;
+  limit: number;
+  page: number | string;
+  totalPages?: number;
+  urlParamName?: string;
+};
+
+export type CardProps = {
+  event: IEvent;
+  hasOrderLink?: boolean;
+  hidePrice?: boolean;
 };
 
 export type SearchParamProps = {

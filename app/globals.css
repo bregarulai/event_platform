@@ -112,6 +112,11 @@ body {
     @apply font-bold text-[28px] leading-[36px] md:leading-[44px];
   }
 
+  /* 28 */
+  .h5-bold {
+    @apply font-bold text-[28px] leading-[36px];
+  }
+
   /* 24 */
   .p-regular-24 {
     @apply font-normal text-[24px] leading-[36px];
@@ -120,6 +125,10 @@ body {
   /* 20 */
   .p-bold-20 {
     @apply font-bold text-[20px] leading-[30px] tracking-[0.01rem];
+  }
+
+  .p-medium-20 {
+    @apply text-[20px] font-medium leading-[30px];
   }
 
   .p-regular-20 {
@@ -145,6 +154,10 @@ body {
   }
 
   /* 14 */
+  .p-semibold-14 {
+    @apply text-[14px] font-semibold leading-[20px];
+  }
+
   .p-medium-14 {
     @apply text-[14px] font-medium leading-[20px];
   }
