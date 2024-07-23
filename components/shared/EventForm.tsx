@@ -27,7 +27,7 @@ import FileUploader from "./FileUploader";
 import { Checkbox } from "../ui/checkbox";
 import { useUploadThing } from "@/lib/uploadthing";
 import { handleError } from "@/lib/utils";
-import { createEvent } from "@/lib/actions/event.actions";
+import { createEvent, updateEvent } from "@/lib/actions/event.actions";
 
 const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
@@ -35,6 +35,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
     event && type === FormType.UPDATE
       ? {
           ...event,
+          categoryId: event.category._id,
           startDateTime: new Date(event.startDateTime),
           endDateTime: new Date(event.endDateTime),
         }
@@ -72,6 +73,27 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
         if (newEvent) {
           form.reset();
           router.push(`/events/${newEvent._id}`);
+        }
+      } catch (error) {
+        handleError(error);
+      }
+    }
+    if (type === FormType.UPDATE) {
+      if (!eventId) {
+        router.back();
+        return;
+      }
+
+      try {
+        const updatedEvent = await updateEvent({
+          userId,
+          event: { ...values, imageUrl: uploadedImageUrl, _id: eventId },
+          path: `/events/${eventId}`,
+        });
+
+        if (updatedEvent) {
+          form.reset();
+          router.push(`/events/${updatedEvent._id}`);
         }
       } catch (error) {
         handleError(error);

@@ -1,16 +1,18 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 import {
   CreateEventParams,
   DeleteEventParams,
   GetAllEventsParams,
+  UpdateEventParams,
 } from "@/types";
 import { handleError, parseStringify } from "../utils";
 import { connectToDatabase } from "../database";
 import User from "../database/models/user.model";
 import Event from "../database/models/event.model";
 import Category from "../database/models/category.model";
-import { revalidatePath } from "next/cache";
 
 const populateEvent = (query: any) => {
   return query
@@ -94,6 +96,34 @@ export const deleteEvent = async ({ eventId, path }: DeleteEventParams) => {
     const deletedEvent = await Event.findByIdAndDelete(eventId);
 
     if (deletedEvent) revalidatePath(path);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const updateEvent = async ({
+  userId,
+  event,
+  path,
+}: UpdateEventParams) => {
+  try {
+    await connectToDatabase();
+
+    const eventToUpdate = await Event.findById(event._id);
+
+    if (!eventToUpdate || eventToUpdate.organizer.toHexString() !== userId) {
+      throw new Error("Unauthorized or event not found");
+    }
+
+    const updatedEvent = await Event.findByIdAndUpdate(
+      event._id,
+      { ...event, category: event.categoryId },
+      { new: true }
+    );
+
+    revalidatePath(path);
+
+    return parseStringify(updatedEvent);
   } catch (error) {
     handleError(error);
   }
