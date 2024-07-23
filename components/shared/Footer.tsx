@@ -5,8 +5,9 @@ const Footer = () => {
   return (
     <footer className="border-t">
       <div className="flex-between wrapper flex-col gap-4 p-5 text-center sm:flex-row">
-        <Link href="/">
+        <Link className="w-[138px]" href="/">
           <Image
+            className="h-auto w-full"
             src="/assets/images/logo.svg"
             height={38}
             width={128}
