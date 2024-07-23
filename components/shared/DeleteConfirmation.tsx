@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useTransition } from "react";
 
 import {
   AlertDialog,
@@ -11,8 +15,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { deleteEvent } from "@/lib/actions/event.actions";
 
 const DeleteConfirmation = ({ eventId }: { eventId: string }) => {
+  const pathname = usePathname();
+  let [isPending, startTransition] = useTransition();
   return (
     <AlertDialog>
       <AlertDialogTrigger>
@@ -23,16 +30,24 @@ const DeleteConfirmation = ({ eventId }: { eventId: string }) => {
           alt="delete"
         />
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-white">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure you want to delete?</AlertDialogTitle>
-          <AlertDialogDescription>
+          <AlertDialogDescription className="p-regular-16 text-grey-600">
             This will permanently delete this event
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Delete</AlertDialogAction>
+          <AlertDialogAction
+            onClick={() =>
+              startTransition(async () => {
+                await deleteEvent({ eventId, path: pathname });
+              })
+            }
+          >
+            Delete
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
