@@ -8,6 +8,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
+  preload: true,
 });
 
 export const metadata: Metadata = {
