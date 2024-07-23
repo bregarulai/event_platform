@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 
 import EventForm from "@/components/shared/EventForm";
+import { FormType } from "@/constants";
 
 const CreateEvent = () => {
   const { sessionClaims } = auth();
@@ -15,7 +16,7 @@ const CreateEvent = () => {
         </h3>
       </section>
       <div className="wrapper my-8">
-        <EventForm userId={userId} type="Create" />
+        <EventForm userId={userId} type={FormType.CREATE} />
       </div>
     </>
   );

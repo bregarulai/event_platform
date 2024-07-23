@@ -6,6 +6,7 @@ import { z } from "zod";
 import { useState } from "react";
 import Image from "next/image";
 import DatePicker from "react-datepicker";
+import { useRouter } from "next/navigation";
 
 import "react-datepicker/dist/react-datepicker.css";
 import {
@@ -19,19 +20,25 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { EventFormProps } from "@/types";
 import { eventFormSchema } from "@/lib/validator";
-import { eventDefaulValues } from "@/constants";
+import { eventDefaulValues, FormType } from "@/constants";
 import Dropdown from "./Dropdown";
 import { Textarea } from "../ui/textarea";
 import FileUploader from "./FileUploader";
 import { Checkbox } from "../ui/checkbox";
 import { useUploadThing } from "@/lib/uploadthing";
 import { handleError } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 import { createEvent } from "@/lib/actions/event.actions";
 
-const EventForm = ({ userId, type }: EventFormProps) => {
+const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
-  const initialValues = eventDefaulValues;
+  const initialValues =
+    event && type === FormType.UPDATE
+      ? {
+          ...event,
+          startDateTime: new Date(event.startDateTime),
+          endDateTime: new Date(event.endDateTime),
+        }
+      : eventDefaulValues;
   const router = useRouter();
 
   const { startUpload } = useUploadThing("imageUploader");
@@ -54,7 +61,7 @@ const EventForm = ({ userId, type }: EventFormProps) => {
       uploadedImageUrl = uploadedImages[0].url;
     }
 
-    if (type === "Create") {
+    if (type === FormType.CREATE) {
       try {
         const newEvent = await createEvent({
           event: { ...values, imageUrl: uploadedImageUrl },

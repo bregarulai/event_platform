@@ -31,3 +31,8 @@ export enum CollectionTypes {
   MY_TICKETS = "My_Tickets",
   ALL_EVENTS = "All_Events",
 }
+
+export enum FormType {
+  CREATE = "Create",
+  UPDATE = "Update",
+}
