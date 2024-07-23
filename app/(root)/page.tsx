@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Collection from "@/components/shared/Collection";
 import { getAllEvets } from "@/lib/actions/event.actions";
+import { CollectionTypes } from "@/constants";
 
 const Home = async () => {
   const events = await getAllEvets({
@@ -52,7 +53,7 @@ const Home = async () => {
           data={events?.data}
           emptyTitle="No Events Found"
           emptyStateSubtext="Come back later"
-          collectionType="All_Events"
+          collectionType={CollectionTypes.ALL_EVENTS}
           limit={6}
           page={1}
           totalPages={2}
