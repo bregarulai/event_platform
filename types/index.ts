@@ -90,6 +90,14 @@ export type GetEventsByUserParams = {
   limit?: number;
 };
 
+export type CheckoutOrderParams = {
+  eventTitle: string;
+  eventId: string;
+  price: string;
+  isFree: boolean;
+  buyerId: string;
+};
+
 export type CollectionType = "Events_Organized" | "My_Tickets" | "All_Events";
 
 export type CollectionProps = {

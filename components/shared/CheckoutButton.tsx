@@ -1,11 +1,11 @@
 "use client";
 
 import { SignedOut, useUser } from "@clerk/nextjs";
+import Link from "next/link";
+import { SignedIn } from "@clerk/clerk-react";
 
 import { IEvent } from "@/lib/database/models/event.model";
 import { Button } from "../ui/button";
-import Link from "next/link";
-import { SignedIn } from "@clerk/clerk-react";
 import Checkout from "./Checkout";
 
 const CheckoutButton = ({ event }: { event: IEvent }) => {
