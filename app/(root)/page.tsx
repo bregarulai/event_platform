@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Collection from "@/components/shared/Collection";
 import { getAllEvets } from "@/lib/actions/event.actions";
 import { CollectionTypes } from "@/constants";
+import Search from "@/components/shared/Search";
 
 const Home = async () => {
   const events = await getAllEvets({
@@ -47,7 +48,8 @@ const Home = async () => {
           Trust by <br /> Thousands of Events
         </h2>
         <div className="flex w-full flex-col md:flex-row gap-5">
-          Search CategoryFilter
+          <Search />
+          CategoryFilter
         </div>
         <Collection
           data={events?.data}
