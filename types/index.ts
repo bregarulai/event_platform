@@ -98,6 +98,14 @@ export type CheckoutOrderParams = {
   buyerId: string;
 };
 
+export type CreateOrderParams = {
+  stripeId: string;
+  eventId: string;
+  buyerId: string;
+  totalAmount: string;
+  createdAt: Date;
+};
+
 export type CollectionType = "Events_Organized" | "My_Tickets" | "All_Events";
 
 export type CollectionProps = {
