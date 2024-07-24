@@ -26,6 +26,10 @@ const populateEvent = (query: any) => {
     .populate({ path: "category", model: Category, select: "_id name" });
 };
 
+const getCategoryByName = async (name: string) => {
+  return Category.findOne({ name: { $regex: name, $option: "i" } });
+};
+
 export const createEvent = async ({
   event,
   userId,
@@ -66,7 +70,7 @@ export const getEventById = async (eventId: string) => {
   }
 };
 
-export const getAllEvets = async ({
+export const getAllEvents = async ({
   query,
   limit = 6,
   page,
@@ -75,10 +79,26 @@ export const getAllEvets = async ({
   try {
     await connectToDatabase();
 
-    const conditions = {};
+    const titleCondition = query
+      ? { title: { $regex: query, $options: "i" } }
+      : {};
+    const categoryCondition = category
+      ? await getCategoryByName(category)
+      : null;
+    const conditions = {
+      $and: [
+        titleCondition,
+        categoryCondition ? { category: categoryCondition._id } : {},
+      ],
+    };
+
+    const skipAmount = (Number(page) - 1) * limit;
 
     const events = await populateEvent(
-      Event.find(conditions).sort({ createdAt: "desc" }).skip(0).limit(limit)
+      Event.find(conditions)
+        .sort({ createdAt: "desc" })
+        .skip(skipAmount)
+        .limit(limit)
     );
     const eventsCount = await Event.countDocuments(conditions);
 

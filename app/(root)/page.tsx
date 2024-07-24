@@ -3,15 +3,20 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import Collection from "@/components/shared/Collection";
-import { getAllEvets } from "@/lib/actions/event.actions";
+import { getAllEvents } from "@/lib/actions/event.actions";
 import { CollectionTypes } from "@/constants";
 import Search from "@/components/shared/Search";
+import { SearchParamProps } from "@/types";
 
-const Home = async () => {
-  const events = await getAllEvets({
-    query: "",
-    category: "",
-    page: 1,
+const Home = async ({ searchParams }: SearchParamProps) => {
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || "";
+  const category = (searchParams?.category as string) || "";
+
+  const events = await getAllEvents({
+    query: searchText,
+    category,
+    page,
     limit: 6,
   });
 
