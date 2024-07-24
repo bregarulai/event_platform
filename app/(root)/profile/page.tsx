@@ -34,7 +34,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
         <Collection
           data={orderdEvents}
           emptyTitle="No event tickets purchased yet"
-          emptyStateSubtext="No worries = plenty of exciting events to explore!"
+          emptyStateSubtext="No worries - plenty of exciting events to explore!"
           collectionType={CollectionTypes.MY_TICKETS}
           limit={3}
           page={ordersPage}
