@@ -7,15 +7,19 @@ import { CollectionTypes } from "@/constants";
 import { getEventsByUser } from "@/lib/actions/event.actions";
 import { getOrdersByUser } from "@/lib/actions/order.actions";
 import { IOrder } from "@/lib/database/models/order.model";
+import { SearchParamProps } from "@/types";
 
-const ProfilePage = async () => {
+const ProfilePage = async ({ searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  const orders = await getOrdersByUser({ userId, page: 1 });
+  const ordersPage = Number(searchParams?.ordersPage) || 1;
+  const eventsPage = Number(searchParams?.eventsPage) || 1;
+
+  const orders = await getOrdersByUser({ userId, page: ordersPage });
   const orderdEvents = orders?.data.map((order: IOrder) => order.event) || [];
 
-  const organizedEvents = await getEventsByUser({ userId, page: 1 });
+  const organizedEvents = await getEventsByUser({ userId, page: eventsPage });
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
@@ -33,9 +37,9 @@ const ProfilePage = async () => {
           emptyStateSubtext="No worries = plenty of exciting events to explore!"
           collectionType={CollectionTypes.MY_TICKETS}
           limit={3}
-          page={1}
+          page={ordersPage}
           urlParamName="ordersPage"
-          totalPages={2}
+          totalPages={orders?.totalPages}
         />
       </section>
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
@@ -53,9 +57,9 @@ const ProfilePage = async () => {
           emptyStateSubtext="Go create some now"
           collectionType={CollectionTypes.EVENT_ORGANIZED}
           limit={6}
-          page={1}
+          page={eventsPage}
           urlParamName="eventsPage"
-          totalPages={2}
+          totalPages={organizedEvents?.totalPages}
         />
       </section>
     </>
