@@ -58,3 +58,13 @@ export const formatDateTime = (dateString: Date) => {
     timeOnly: formattedTime,
   };
 };
+
+export const formatPrice = (price: string) => {
+  const amount = parseFloat(price);
+  const formattedPrice = new Intl.NumberFormat("en-us", {
+    style: "currency",
+    currency: "USD",
+  }).format(amount);
+
+  return formattedPrice;
+};
