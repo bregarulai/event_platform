@@ -128,6 +128,12 @@ export type RemoveUrlQueryParams = {
   keysToRemove: string[];
 };
 
+export type PaginationProps = {
+  urlParamName?: string;
+  page: number | string;
+  totalPages: number;
+};
+
 export type CollectionType = "Events_Organized" | "My_Tickets" | "All_Events";
 
 export type CollectionProps = {

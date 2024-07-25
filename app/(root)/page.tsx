@@ -13,8 +13,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || "";
   const category = (searchParams?.category as string) || "";
-  console.log("Category: ", category);
-  console.log("searchText: ", searchText);
+
   const events = await getAllEvents({
     query: searchText,
     category,
@@ -64,8 +63,8 @@ const Home = async ({ searchParams }: SearchParamProps) => {
           emptyStateSubtext="Come back later"
           collectionType={CollectionTypes.ALL_EVENTS}
           limit={6}
-          page={1}
-          totalPages={2}
+          page={page}
+          totalPages={events?.totalPages}
         />
       </section>
     </>
