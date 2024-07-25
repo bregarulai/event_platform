@@ -7,12 +7,14 @@ import { getAllEvents } from "@/lib/actions/event.actions";
 import { CollectionTypes } from "@/constants";
 import Search from "@/components/shared/Search";
 import { SearchParamProps } from "@/types";
+import CategoryFilter from "@/components/shared/CategoryFilter";
 
 const Home = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || "";
   const category = (searchParams?.category as string) || "";
-
+  console.log("Category: ", category);
+  console.log("searchText: ", searchText);
   const events = await getAllEvents({
     query: searchText,
     category,
@@ -54,7 +56,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
         </h2>
         <div className="flex w-full flex-col md:flex-row gap-5">
           <Search />
-          CategoryFilter
+          <CategoryFilter />
         </div>
         <Collection
           data={events?.data}

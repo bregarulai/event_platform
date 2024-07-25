@@ -27,7 +27,7 @@ const populateEvent = (query: any) => {
 };
 
 const getCategoryByName = async (name: string) => {
-  return Category.findOne({ name: { $regex: name, $option: "i" } });
+  return Category.findOne({ name: { $regex: name, $options: "i" } });
 };
 
 export const createEvent = async ({
