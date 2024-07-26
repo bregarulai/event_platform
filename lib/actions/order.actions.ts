@@ -42,7 +42,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
       success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
       cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/`,
     });
-    console.log("Session=============>", session);
+
     return parseStringify(session);
 
     // Below code not working at the moment, used useRouter at the client as a workaround
