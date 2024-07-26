@@ -56,7 +56,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           emptyTitle="No events have been created yet"
           emptyStateSubtext="Go create some now"
           collectionType={CollectionTypes.EVENT_ORGANIZED}
-          limit={6}
+          limit={3}
           page={eventsPage}
           urlParamName="eventsPage"
           totalPages={organizedEvents?.totalPages}
