@@ -1,7 +1,7 @@
 <div align="center">
   <br />
-<img width="1800" alt="eventBanner" src="https://github.com/user-attachments/assets/a5299c98-388b-48ad-9981-8c6ff8eaf3ec">
-<br />
+    <img width="1800" alt="eventBanner" src="https://github.com/user-attachments/assets/a5299c98-388b-48ad-9981-8c6ff8eaf3ec">
+  <br />
   <div>
     <img src="https://img.shields.io/badge/-Next_JS_14-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="Next.js" />
     <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="TypeScript" />
@@ -12,7 +12,7 @@
 
 </div>
 
-## <a name="tech-stack">⚙️ Tech Stack</a>
+## ⚙️ Tech Stack
 
 - Node.js
 - Next.js
@@ -25,7 +25,7 @@
 - uploadthing
 - mongodb
 
-## <a name="features">🔋 Features</a>
+## 🔋 Features
 
 **Authentication (CRUD) with Clerk:** User management through Clerk, ensuring secure and efficient authentication.
 
@@ -66,7 +66,7 @@ Make sure you have the following installed on your machine:
 **Cloning the Repository**
 
 ```bash
-git clone https://github.com/your-username/your-project.git
+git clone https://github.com/bregarulai/event_platform.git
 cd your-project
 ```
 
